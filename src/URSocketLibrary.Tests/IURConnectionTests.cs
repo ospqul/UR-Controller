@@ -43,7 +43,6 @@ namespace URSocketLibrary.Tests
 
         [Theory]
         [InlineData("111.111.111.111", 8444, SocketError.TimedOut)]
-        [InlineData("111.111.111", 8444, SocketError.TimedOut)]
         [InlineData("127.0.0.1", 8888, SocketError.ConnectionRefused)]
         public void Create_WrongIpPortReturnsNull(string server, int port, SocketError expectedError)
         {

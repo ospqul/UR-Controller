@@ -2,6 +2,8 @@
 {
     public interface IURDashboard
     {
+        bool IsConnected { get; set; }
+
         void Close();
         void Dispose();
         string Receive();

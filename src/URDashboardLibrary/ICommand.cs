@@ -121,7 +121,7 @@
             return POWER_OFF;
         }
 
-        public static string ReleaseBreak()
+        public static string ReleaseBrake()
         {
             return RELEASE_BRAKE;
         }

@@ -6,36 +6,48 @@ namespace URDashboardLibrary
     public class URDashboard : IDisposable, IURDashboard
     {
         private IURSocket _urSocket { get; set; }
+        public bool IsConnected { get; set; } = false;
 
         public URDashboard(IURSocket urSocket)
         {
-            if (urSocket != null)
-            {
-                _urSocket = urSocket;
+            _urSocket = urSocket;
+
+            if ((_urSocket != null) && (_urSocket.State == ConnectionState.CONNECTED))
+            {                
+                IsConnected = true;
             }
         }
 
         public void Dispose()
         {
             _urSocket.Dispose();
+            IsConnected = false;
         }
 
         public void Close()
         {
             _urSocket.Close();
+            IsConnected = false;
         }
 
         public void Send(string command)
         {
-            command += '\n';
-            var package = IDashboardPackage.Pack(command);
-            _urSocket.Send(package);
+            if (IsConnected == true)
+            {
+                command += '\n';
+                var package = IDashboardPackage.Pack(command);
+                _urSocket.Send(package);
+            }
         }
 
         public string Receive()
         {
-            var response = _urSocket.Receive();
-            return IDashboardPackage.Unpack(response).TrimEnd('\n'); ;
+            if (IsConnected == true)
+            {
+                var response = _urSocket.Receive();
+                return IDashboardPackage.Unpack(response).TrimEnd('\n'); ;
+            }
+            return "";
         }
 
         public string SendReceive(string command)
