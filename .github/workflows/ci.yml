@@ -22,6 +22,13 @@ jobs:
       run: dotnet restore
       working-directory: ./src
       
+    - uses: nuget/setup-nuget@v1
+      with:
+        nuget-api-key: ${{ secrets.NuGetAPIKey }}
+        nuget-version: '5.x'
+    - run: nuget restore
+      working-directory: ./src
+      
     - name: Build
       run: dotnet build --configuration Release --no-restore
       working-directory: ./src
