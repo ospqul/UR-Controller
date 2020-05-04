@@ -1,8 +1,0 @@
- Program
-   Robot Program
-     MoveJ
-       Home
-     MoveJ
-       Pre_pick
-     MoveL
-       Pick
