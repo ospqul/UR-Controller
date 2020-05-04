@@ -1,0 +1,10 @@
+ Program
+   Robot Program
+     MoveJ
+       Pre_scan
+     MoveL
+       Scan_start
+     MoveL
+       Scan_end
+     MoveL
+       Post_scan

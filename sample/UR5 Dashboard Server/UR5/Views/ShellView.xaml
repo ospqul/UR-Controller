@@ -1,0 +1,167 @@
+﻿<Window x:Class="UR5.Views.ShellView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UR5.Views"
+        mc:Ignorable="d"
+        Title="UR5 Controller" Height="700" Width="1100">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <!-- 17-->
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <!-- 17-->
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+
+        <!-- Connect device -->
+        <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="2">
+            <Button x:Name="Connect" Content="Connect" MinWidth="80"/>
+            <Label Content="Ip Address"/>
+            <TextBox x:Name="IpAddress" MinWidth="100"/>
+            <Label Content="Serial Number"/>
+            <TextBox x:Name="SerialNumber" MinWidth="100"/>
+        </StackPanel>
+
+        <!-- End Program -->
+        <Button x:Name="EndProgram" Content="End Program" Grid.Row="2" 
+                Grid.Column="1" Grid.ColumnSpan="2" Margin="2"/>
+
+        <!-- Load program -->
+        <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="2">
+            <Button x:Name="Load" Content="Load Program" Click="Play_Click" />
+            <Label Content="Program Name:"/>
+            <TextBox x:Name="FileName" MinWidth="100"/>
+        </StackPanel>
+
+        <!-- Robot Arm Settings Heading -->
+        <Label Content="Robot Arm Settings" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Margin="1"/>
+
+        <!-- Robot Arm Settings -->
+        <Border BorderThickness="1" BorderBrush="Black" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Margin="1">
+            <StackPanel MinHeight="30" Orientation="Horizontal">
+                <Button x:Name="PowerOnRobotArm" Content="Power On Arm" Click="Play_Click" Margin="3"/>
+                <Button x:Name="ReleaseRobotArmBrake" Content="Release Arm Brake" Click="Play_Click" Margin="3"/>
+                <Button x:Name="PowerOffRobotArm" Content="Power Off Arm" Click="Play_Click" Margin="3"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Program Settings Heading -->
+        <Label Content="Program Settings" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" Margin="1" />
+
+        <!-- Program Settings -->
+        <Border BorderThickness="1" BorderBrush="Black" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" Margin="1">
+            <StackPanel MinHeight="30" Orientation="Horizontal">
+                <Button x:Name="Play" Content="Play Program" Click="Play_Click" Margin="3"/>
+                <Button x:Name="Pause" Content="Pause Program" Click="Play_Click" Margin="3"/>
+                <Button x:Name="Stop" Content="Stop Program" Click="Play_Click" Margin="3"/>
+                <Button x:Name="ClosePopUpMessage" Content="Close Pop-up" Click="Play_Click" Margin="3"/>
+                <Button x:Name="GetProgramDetails" Content="Program Details" Click="Play_Click" Margin="3"/>
+
+            </StackPanel>
+        </Border>
+
+        <!-- Program Safety Heading -->
+        <Label Content="Safety Settings" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" Margin="1"/>
+
+        <!-- Program Safety Settings -->
+        <Border BorderThickness="1" BorderBrush="Black" Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="2" Margin="1">
+            <StackPanel MinHeight="30" Orientation="Horizontal">
+                <Button x:Name="UnlockProtectiveStop" Content="Unlock Protective Stop" Click="Play_Click" Margin="3"/>
+                <Button x:Name="RestartRobotSafety" Content="Restart Robot Safety" Click="Play_Click" Margin="3"/>
+                <Button x:Name="CloseSafetyPopup" Content="Close Safety Popup" Click="Play_Click" Margin="3"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Program Status Table -->
+        <Label Content="Program Status Table" Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="2" Margin="1"/>
+        <Border BorderThickness="1" BorderBrush="Black" Grid.Row="11" Grid.Column="1" Grid.ColumnSpan="2" Margin="1">
+            <StackPanel Margin="1">
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
+                        <Label Content="File Name:"/>
+                        <TextBox x:Name="ProgramName" MinWidth="200"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2">
+                        <Label Content="Running status:"/>
+                        <TextBox x:Name="RunningStatus" MinWidth="50"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Column="3" Grid.Row="2">
+                        <Label Content="Program State:"/>
+                        <TextBox x:Name="SaveState" MinWidth="50"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Column="3" Grid.Row="2">
+                        <Label Content="Program Detail"/>
+                        <TextBox x:Name="RobotMode" MinWidth="50"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2">
+                        <Label Content="Save Status:"/>
+                        <TextBox x:Name="State" MinWidth="50" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="2">
+                        <Label Content="Safety Mode Status:"/>
+                        <TextBox x:Name="SafetyStatus" MinWidth="50"/>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <!-- Row 5: Logging -->
+        <Label Content="Logging Table" Grid.Row="12" Grid.Column="1" Grid.ColumnSpan="2" Margin="1"/>
+        <Border BorderThickness="1" BorderBrush="Black" MaxWidth="400" Grid.Column="1" Grid.ColumnSpan="2"
+                Grid.Row="13" Grid.RowSpan="17" Margin="1">
+            <ScrollViewer>
+                <TextBox x:Name="Logging" TextWrapping="Wrap"/>
+            </ScrollViewer>
+        </Border>
+
+
+    </Grid>
+</Window>
