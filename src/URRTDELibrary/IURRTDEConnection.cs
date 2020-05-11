@@ -2,7 +2,7 @@
 
 namespace URRTDELibrary
 {
-    public class IURRTDEConnection
+    public static class IURRTDEConnection
     {
         public static IURRTDE Create(string server)
         {
