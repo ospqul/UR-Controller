@@ -28,7 +28,8 @@ namespace SecondaryPort
             var cmds = URScript.Text.Split('\n');
             for (int i=0; i<cmds.Length; i++)
             {
-                urSec.Send(cmds[i]+'\n');
+                var cmd = cmds[i].Trim('\r') + '\n';
+                urSec.Send(cmd);
             }
 
             URScript.Text = "";
