@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "URDashboardLibrary", "URDas
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "URRTDELibrary", "URRTDELibrary\URRTDELibrary.csproj", "{DBFA51E9-87F1-4C8B-AD59-F6AC7E0C9D4A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "URDashboardLibrary.Tests", "URDashboardLibrary.Tests\URDashboardLibrary.Tests.csproj", "{A5A81922-3DE3-42C2-8854-227C07A212D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "URDashboardLibrary.Tests", "URDashboardLibrary.Tests\URDashboardLibrary.Tests.csproj", "{A5A81922-3DE3-42C2-8854-227C07A212D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "URSecondaryLibrary.Tests", "URSecondaryLibrary.Tests\URSecondaryLibrary.Tests.csproj", "{F681606A-93D7-418D-887C-4EA2523BDE8C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{A5A81922-3DE3-42C2-8854-227C07A212D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5A81922-3DE3-42C2-8854-227C07A212D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5A81922-3DE3-42C2-8854-227C07A212D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F681606A-93D7-418D-887C-4EA2523BDE8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F681606A-93D7-418D-887C-4EA2523BDE8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F681606A-93D7-418D-887C-4EA2523BDE8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F681606A-93D7-418D-887C-4EA2523BDE8C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
