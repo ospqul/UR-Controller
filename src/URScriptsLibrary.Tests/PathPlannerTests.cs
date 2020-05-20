@@ -25,6 +25,8 @@ namespace URScriptsLibrary.Tests
             Overlay = 0.2;
         }
 
+        #region SStyle test cases
+
         [Theory]
         [InlineData(-0.1, 0)]
         [InlineData(1, 0)]
@@ -113,6 +115,98 @@ namespace URScriptsLibrary.Tests
                 if (i < moves.Count - 1)
                 {
                     var indexVector = (moves[i + 1].Start - moves[i].End).PoseVector;
+                    var actual = indexVector.Length;
+                    Assert.Equal(expected, actual, 4);
+                }
+            }
+        }
+
+#endregion
+
+        [Theory]
+        [InlineData(-0.1, 0)]
+        [InlineData(1, 0)]
+        public void ZStyle_WrongOverlayRateHasNoMovement(double overlay, int expected)
+        {
+            var moves = PathPlanner.ZStyle(Boundary, BrushThickness, overlay);
+
+            var actual = moves.Count;
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData(-0.1, 0)]
+        [InlineData(0, 0)]
+        [InlineData(5, 1)]
+        public void ZStyle_WrongBrushThicknessHasNoMovement(double thickness, int expected)
+        {
+            var moves = PathPlanner.ZStyle(Boundary, thickness, Overlay);
+
+            var actual = moves.Count;
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void ZStyle_ShouldHaveEnoughMoves()
+        {
+            var moves = PathPlanner.ZStyle(Boundary, BrushThickness, Overlay);
+
+            var indexOffset = BrushThickness * (1 - Overlay);
+
+            int expected = (int)Math.Ceiling(Boundary.IndexMovement.PoseVector.Length / indexOffset);
+
+            var actual = moves.Count;
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void ZStyle_ShouldHaveCorrectScanMoves()
+        {
+            var moves = PathPlanner.ZStyle(Boundary, BrushThickness, Overlay);
+
+            var expected = Boundary.ScanMovement.PoseVector;
+
+            for (int i = 0; i < moves.Count; i++)
+            {
+                var actual = moves[i].Movement.PoseVector;
+                Assert.True(Vector3D.Equals(expected, actual));
+                Assert.True(Vector3D.Equals(new Vector3D(0, 0, 0), moves[i].Movement.RotationVector));
+            }
+        }
+
+        [Fact]
+        public void ZStyle_IndexMovesShouldHaveCorrectDirection()
+        {
+            var moves = PathPlanner.ZStyle(Boundary, BrushThickness, Overlay);
+
+            double expected = 0;
+
+            for (int i = 0; i < moves.Count; i++)
+            {
+                if (i < moves.Count - 1)
+                {
+                    var indexVector = (moves[i + 1].Start - moves[i].Start).PoseVector;
+                    var actual = Vector3D.AngleBetween(indexVector, Boundary.IndexMovement.PoseVector);
+                    Assert.Equal(expected, actual, 4);
+                }
+            }
+        }
+
+        [Fact]
+        public void ZStyle_IndexMovesShouldHaveCorrectLength()
+        {
+            var moves = PathPlanner.ZStyle(Boundary, BrushThickness, Overlay);
+
+            double expected = BrushThickness * (1 - Overlay);
+
+            for (int i = 0; i < moves.Count; i++)
+            {
+                if (i < moves.Count - 1)
+                {
+                    var indexVector = (moves[i + 1].Start - moves[i].Start).PoseVector;
                     var actual = indexVector.Length;
                     Assert.Equal(expected, actual, 4);
                 }

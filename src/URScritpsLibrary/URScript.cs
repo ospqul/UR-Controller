@@ -16,8 +16,10 @@ namespace URScritpsLibrary
             {
                 // movej to safe position above start point
                 sb.Append(Indent(1) + MoveL(movements[i].Start + safeDistVector, 0.5, 0.3));
+                sb.Append(Indent(1) + Sleep(0.5));
                 // force mode
                 sb.Append(ForceMode(1, movements[i]));
+                sb.Append(Indent(1) + Sleep(0.5));
                 // move to safe position after one line scan
                 sb.Append(Indent(1) + MoveL(movements[i].End + safeDistVector, 0.1, 0.1));
             }
@@ -51,8 +53,9 @@ namespace URScritpsLibrary
         public static string ForceMode(uint indentLevel, IURMovement movement)
         {
             string cmd = "";            
-            cmd += Indent(indentLevel) + "force_mode(p[0.0,0.0,0.0,0.0,0.0,0.0], [0, 0, 1, 0, 0, 0], [0.0, 0.0, -20.0, 0.0, 0.0, 0.0], 2, [0.1, 0.1, 0.15, 0.3490658503988659, 0.3490658503988659, 0.3490658503988659])\n";            
-            cmd += Indent(indentLevel) + MoveL(movement.Start);            
+            cmd += Indent(indentLevel) + "force_mode(p[0.0,0.0,0.0,0.0,0.0,0.0], [0, 0, 1, 0, 0, 0], [0.0, 0.0, -70.0, 0.0, 0.0, 0.0], 2, [0.1, 0.1, 0.15, 0.3490658503988659, 0.3490658503988659, 0.3490658503988659])\n";            
+            cmd += Indent(indentLevel) + MoveL(movement.Start);
+            cmd += Indent(indentLevel) + Sleep(1);
             cmd += Indent(indentLevel) + MoveL(movement.End);            
             cmd += Indent(indentLevel) + "end_force_mode()\n";
             return cmd;
@@ -75,5 +78,9 @@ namespace URScritpsLibrary
             }
         }
 
+        public static string Sleep(double sec)
+        {
+            return $"sleep({ sec })\n";
+        }
     }
 }
