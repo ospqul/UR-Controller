@@ -7,6 +7,7 @@
         void Close();
         void Dispose();
         string Receive();
+        byte[] ReceiveBytes();
         void Send(string command);
         string SendReceive(string command);
     }

@@ -175,5 +175,97 @@ namespace URSecondaryLibrary.Tests
 
             }
         }
+
+        [Fact]
+        public void ReceiveBytes_ConnectedShouldReceive()
+        {
+            using (var mock = AutoMock.GetLoose())
+            {
+                int bufferSize = 4096;
+                byte[] response = { 0x00, 0x01, 0x02 };
+                
+                mock.Mock<IURSocket>()
+                    .Setup(x => x.State)
+                    .Returns(ConnectionState.CONNECTED);
+
+                mock.Mock<IURSocket>()
+                    .Setup(x => x.Receive(bufferSize))
+                    .Returns(response);
+
+                var mockURSecondary = mock.Create<URSecondary>();
+
+                var expected = response;
+
+                var actual = mockURSecondary.ReceiveBytes();
+
+                mock.Mock<IURSocket>()
+                    .Verify(x => x.Receive(bufferSize), Times.Exactly(1));
+
+                Assert.Equal(expected.Length, actual.Length);
+            }
+        }
+
+        [Fact]
+        public void ReceiveBytes_DisconnectedShouldNotReceive()
+        {
+            using (var mock = AutoMock.GetLoose())
+            {
+                int bufferSize = 4096;
+                byte[] response = { 0x00, 0x01, 0x02 };
+
+                mock.Mock<IURSocket>()
+                    .Setup(x => x.State)
+                    .Returns(ConnectionState.DISCONNECTED);
+
+                mock.Mock<IURSocket>()
+                    .Setup(x => x.Receive(bufferSize))
+                    .Returns(response);
+
+                var mockURSecondary = mock.Create<URSecondary>();
+
+                var actual = mockURSecondary.ReceiveBytes();
+
+                byte[] expected = { };
+
+                mock.Mock<IURSocket>()
+                    .Verify(x => x.Receive(bufferSize), Times.Exactly(0));
+
+                Assert.Equal(expected.Length, actual.Length);
+            }
+        }
+
+        [Fact]
+        public void ReceiveBytes_ValidateReceiveBytesMethod()
+        {
+            using (var mock = AutoMock.GetLoose())
+            {
+                int bufferSize = 4096;
+                byte[] response = { 0x00, 0x01, 0x02 };
+
+                mock.Mock<IURSocket>()
+                    .Setup(x => x.State)
+                    .Returns(ConnectionState.CONNECTED);
+
+                mock.Mock<IURSocket>()
+                    .Setup(x => x.Receive(bufferSize))
+                    .Returns(response);
+
+                var mockURSecondary = mock.Create<URSecondary>();
+
+                var expected = response;
+
+                var actual = mockURSecondary.ReceiveBytes();
+
+                mock.Mock<IURSocket>()
+                    .Verify(x => x.Receive(bufferSize), Times.Exactly(1));
+
+                Assert.Equal(expected.Length, actual.Length);
+
+                for (int i = 0; i < expected.Length; i++)
+                {
+                    Assert.Equal(expected[i], actual[i]);
+                }
+            }
+        }
     }
 }

@@ -49,9 +49,20 @@ namespace URSecondaryLibrary
             if (IsConnected == true)
             {
                 var response = _urSocket.Receive();
-                return ISecondaryPackage.Unpack(response).TrimEnd('\n'); ;
+                return ISecondaryPackage.Unpack(response).TrimEnd('\n');
             }
             return "";
+        }
+
+        public byte[] ReceiveBytes()
+        {
+            byte[] resp = { };
+            if (IsConnected == true)
+            {
+                var response = _urSocket.Receive();
+                return response;
+            }
+            return resp;
         }
 
         public string SendReceive(string command)
