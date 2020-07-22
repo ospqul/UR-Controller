@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\URDashboardLibrary\URDashboardLibrary.csproj" />
+    <ProjectReference Include="..\..\src\URRTDELibrary\URRTDELibrary.csproj" />
+    <ProjectReference Include="..\..\src\URScritpsLibrary\URScritpsLibrary.csproj" />
+    <ProjectReference Include="..\..\src\URSecondaryLibrary\URSecondaryLibrary.csproj" />
+  </ItemGroup>
+
+</Project>
