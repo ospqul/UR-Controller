@@ -65,7 +65,7 @@ namespace URControlDemo
             Logging.Text += $"Controller Version: major { cv.Major }" +
                 $" minor { cv.Minor } bugfix { cv.Bugfix } build { cv.Build }";
 
-            string vars = "timestamp,actual_TCP_pose,runtime_state";
+            string vars = "timestamp,actual_TCP_pose,actual_q,runtime_state";
             SetupOutput setupOut = new SetupOutput(rtde, 125, vars);
             Logging.Text += $"Setup Output: output recipe id { setupOut.OutputRecipeId }" +
                 $" variable types { setupOut.VariableTypes }";
@@ -83,14 +83,24 @@ namespace URControlDemo
             {
                 rd.Receive();
                 var position = rd.ActualTCPPose;
+                var jointPos = rd.ActualJointPose;
                 Dispatcher.Invoke(() =>
                 {
+                    //TCP
                     URX.Text = (position.X * 1000).ToString("0.#");
                     URY.Text = (position.Y * 1000).ToString("0.#");
                     URZ.Text = (position.Z * 1000).ToString("0.#");
                     URRX.Text = position.RX.ToString("0.###");
                     URRY.Text = position.RY.ToString("0.###");
                     URRZ.Text = position.RZ.ToString("0.###");
+
+                    //Joint
+                    Base.Text = jointPos.Base.ToString("0.###");
+                    Shoulder.Text = jointPos.Shoulder.ToString("0.###");
+                    Elbow.Text = jointPos.Elbow.ToString("0.###");
+                    Wrist1.Text = jointPos.Wrist1.ToString("0.###");
+                    Wrist2.Text = jointPos.Wrist2.ToString("0.###");
+                    Wrist3.Text = jointPos.Wrist3.ToString("0.###");
                 });
             }
         }
